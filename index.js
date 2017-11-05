@@ -5,6 +5,7 @@ Promise.promisifyAll(redis.Multi.prototype)
 
 const bittrexApi = require('node.bittrex.api')
 const uuid = require('uuid/v1')
+const http = require('http')
 
 const redisClient = redis.createClient()
 
@@ -43,3 +44,9 @@ setInterval(_ => {
         }
     })
 }, 1000)
+
+// to make heroku work
+http.createServer((request, response) => {
+    console.log('request starting for ');
+    console.log(request);
+}).listen(process.env.PORT || 5000)
