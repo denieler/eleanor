@@ -1,0 +1,26 @@
+{
+  "name": "eleanor",
+  "version": "1.0.0",
+  "description": "Server for collecting trading data from Bittrex",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/denieler/eleanor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/denieler/eleanor/issues"
+  },
+  "homepage": "https://github.com/denieler/eleanor#readme",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "node.bittrex.api": "^1.0.0",
+    "redis": "^2.8.0",
+    "uuid": "^3.1.0"
+  }
+}
