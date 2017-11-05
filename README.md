@@ -1,5 +1,7 @@
-# eleanor
+# Eleanor
 Server for collecting trading data from Bittrex
+
+![Eleanor Abernathy](https://github.com/denieler/eleanor/raw/master/images/Eleanor_Abernathy.png)
 
 ## Development notes
 
