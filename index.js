@@ -7,7 +7,9 @@ const bittrexApi = require('node.bittrex.api')
 const uuid = require('uuid/v1')
 const http = require('http')
 
-const redisClient = redis.createClient()
+const redisClient = redis.createClient({
+    url: process.env.REDIS_URL
+})
 
 redisClient.on('error', function (err) {
     console.log('Error ' + err)
