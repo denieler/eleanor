@@ -49,6 +49,6 @@ setInterval(_ => {
 
 // to make heroku work
 http.createServer((request, response) => {
-    console.log('request starting for ');
-    console.log(request);
+    response.writeHead(200, {'Content-type':'text/plan'})
+    response.end()
 }).listen(process.env.PORT || 5000)
