@@ -19,25 +19,29 @@ function addCurrencyRecord (currency, tradingTick) {
     const tickId = uuid()
     const createDate = new Date().getTime()
 
-    // save data
+    if (!tradingTick || !tradingTick.length) {
+        return
+    }
+
+    const tradingData = tradingTick[0]
     redisClient.hmset('data:' + currency + ':' + tickId, {
-        high:      tradingTick.High,
-        low:       tradingTick.Low,
-        volume:    tradingTick.Volume,
-        last:      tradingTick.Last,
-        bid:       tradingTick.Bid,
-        ask:       tradingTick.Ask,
-        timeStamp: tradingTick.TimeStamp,
-        created:   tradingTick.Created
+        high:      tradingData.High,
+        low:       tradingData.Low,
+        volume:    tradingData.Volume,
+        last:      tradingData.Last,
+        bid:       tradingData.Bid,
+        ask:       tradingData.Ask,
+        timeStamp: tradingData.TimeStamp,
+        created:   tradingData.Created
     }, (err, obj) => {
         if (err) {
-            console.log('Error adding currency record. Data:', obj, currency, tradingTick)
+            console.log('Error adding currency record. Data:', obj, currency, tradingData)
         }
     })
 
     redisClient.zadd(['timeData', createDate, tickId], (err, obj) => {
         if (err) {
-            console.log('Error adding filtering set of currency record. Data:', obj, createDate, currency, tradingTick)
+            console.log('Error adding filtering set of currency record. Data:', obj, createDate, currency, tradingData)
         }
     })
 }
