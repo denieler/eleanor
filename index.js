@@ -20,9 +20,14 @@ function addCurrencyRecord (currency, tradingTick) {
     const createDate = new Date().getTime()
 
     redisClient.hmset('data:' + currency + ':' + tickId, {
-        bid: tradingTick.Bid,
-        ask: tradingTick.Ask,
-        last: tradingTick.Last
+        high:      tradingTick.High,
+        low:       tradingTick.Low,
+        volume:    tradingTick.Volume,
+        last:      tradingTick.Last,
+        bid:       tradingTick.Bid,
+        ask:       tradingTick.Ask,
+        timeStamp: tradingTick.TimeStamp,
+        created:   tradingTick.Created
     }, (err, obj) => {
         if (err) {
             console.log('Error adding currency record. Data:', obj, currency, tradingTick)
@@ -38,7 +43,7 @@ function addCurrencyRecord (currency, tradingTick) {
 
 const currency = 'BTC'
 setInterval(_ => {
-    bittrexApi.getticker({ market: 'USDT-' + currency }, (data, err) => {
+    bittrexApi.getmarketsummary({ market: 'USDT-' + currency }, (data, err) => {
         if (data.success) {
             addCurrencyRecord(currency, data.result)
         } else {
