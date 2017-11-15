@@ -19,6 +19,7 @@ function addCurrencyRecord (currency, tradingTick) {
     const tickId = uuid()
     const createDate = new Date().getTime()
 
+    // save data
     redisClient.hmset('data:' + currency + ':' + tickId, {
         high:      tradingTick.High,
         low:       tradingTick.Low,
